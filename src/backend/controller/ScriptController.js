@@ -121,10 +121,106 @@ class ScriptController {
 
         app.get("/api/scripts/", async (req, res) => {
             try {
-                const scripts = await this.scriptService.getScripts();
+                const { category, search, sort = 'date', order = 'DESC', limit = 20, offset = 0, tags } = req.query;
+                const tagArray = tags ? tags.split(',') : [];
+                
+                const scripts = await this.scriptService.getScripts(
+                    category, 
+                    search, 
+                    sort, 
+                    order, 
+                    parseInt(limit), 
+                    parseInt(offset),
+                    tagArray
+                );
                 res.json(scripts);
             } catch (error) {
-                res.status(500).json({ message: "Interner Serverfehler" });
+                console.error("Error fetching scripts:", error);
+                res.status(500).json({ message: "Internal server error" });
+            }
+        });
+
+        app.get("/api/scripts/:id", async (req, res) => {
+            try {
+                const { id } = req.params;
+                const script = await this.scriptService.getScriptById(id);
+                
+                if (!script || script.isDeleted || !script.isApproved) {
+                    return res.status(404).json({ message: "Script not found" });
+                }
+                
+                // Increment view count
+                await this.scriptService.incrementViews(id);
+                
+                res.json(script);
+            } catch (error) {
+                console.error("Error fetching script:", error);
+                res.status(500).json({ message: "Internal server error" });
+            }
+        });
+
+        app.get("/api/scripts/:id/download", async (req, res) => {
+            try {
+                const { id } = req.params;
+                const script = await this.scriptService.getScriptById(id);
+                
+                if (!script || script.isDeleted || !script.isApproved) {
+                    return res.status(404).json({ message: "Script not found" });
+                }
+                
+                // Increment download count
+                await this.scriptService.incrementDownloads(id);
+                
+                res.redirect(script.downloadUrl || script.downloadLink);
+            } catch (error) {
+                console.error("Error downloading script:", error);
+                res.status(500).json({ message: "Internal server error" });
+            }
+        });
+
+        app.get("/api/scripts/trending", async (req, res) => {
+            try {
+                const days = parseInt(req.query.days) || 7;
+                const limit = parseInt(req.query.limit) || 10;
+                
+                const scripts = await this.scriptService.getTrendingScripts(days, limit);
+                res.json(scripts);
+            } catch (error) {
+                console.error("Error fetching trending scripts:", error);
+                res.status(500).json({ message: "Internal server error" });
+            }
+        });
+
+        app.get("/api/scripts/recent", async (req, res) => {
+            try {
+                const limit = parseInt(req.query.limit) || 10;
+                const scripts = await this.scriptService.getRecentlyUpdated(limit);
+                res.json(scripts);
+            } catch (error) {
+                console.error("Error fetching recent scripts:", error);
+                res.status(500).json({ message: "Internal server error" });
+            }
+        });
+
+        app.get("/api/tags/popular", async (req, res) => {
+            try {
+                const limit = parseInt(req.query.limit) || 20;
+                const tags = await this.scriptService.getPopularTags(limit);
+                res.json(tags);
+            } catch (error) {
+                console.error("Error fetching popular tags:", error);
+                res.status(500).json({ message: "Internal server error" });
+            }
+        });
+
+        app.get("/api/tags/:tag/scripts", async (req, res) => {
+            try {
+                const { tag } = req.params;
+                const scripts = await this.scriptService.searchScriptsByTag(tag);
+                res.json(scripts);
+            } catch (error) {
+                console.error("Error fetching scripts by tag:", error);
+                res.status(500).json({ message: "Internal server error" });
             }
         });
 

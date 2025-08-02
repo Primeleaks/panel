@@ -1,10 +1,10 @@
 <template>
-  <div className="login-container">
-    <div className="login-card">
+  <div class="login-container">
+    <div class="login-card">
       <h1>HOPE LEAKS</h1>
       <p>Dein Account wird überprüft bitte warten!</p>
       <p>{{ status }}</p>
-      <svg viewBox="25 25 50 50">
+      <svg viewBox="25 25 50 50" class="loading-spinner">
         <circle r="20" cy="50" cx="50"></circle>
       </svg>
     </div>
@@ -44,7 +44,7 @@ export default {
 
         this.status = this.checkingSteps[0];
         await this.sleep(800);
-        const blacklistResponse = await fetch(`https://hopeleaks-panel-backend.xsojeo.easypanel.host/api/blacklist/isBlacklisted/${discordId}`);
+        const blacklistResponse = await fetch(`http://localhost:3001/api/blacklist/isBlacklisted/${discordId}`);
         const isBlacklisted = await blacklistResponse.json();
 
         if (isBlacklisted) {

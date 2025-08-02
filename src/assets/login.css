@@ -174,3 +174,42 @@
     transform: translateY(-1px);
     box-shadow: 0 4px 10px rgba(88, 101, 242, 0.3);
 }
+
+/* Loading Spinner */
+.loading-spinner {
+  width: 80px;
+  height: 80px;
+  margin: 20px auto 0;
+  animation: rotate 2s linear infinite;
+}
+
+.loading-spinner circle {
+  fill: none;
+  stroke: var(--primary-color, #4A90E2);
+  stroke-width: 3;
+  stroke-dasharray: 90, 150;
+  stroke-dashoffset: 0;
+  stroke-linecap: round;
+  animation: dash 1.5s ease-in-out infinite;
+}
+
+@keyframes rotate {
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+@keyframes dash {
+  0% {
+    stroke-dasharray: 1, 150;
+    stroke-dashoffset: 0;
+  }
+  50% {
+    stroke-dasharray: 90, 150;
+    stroke-dashoffset: -35;
+  }
+  100% {
+    stroke-dasharray: 90, 150;
+    stroke-dashoffset: -124;
+  }
+}

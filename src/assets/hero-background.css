@@ -1,0 +1,21 @@
+.hero-background {
+  background-color: #4a6cf7;
+  background-image: 
+    radial-gradient(at 80% 0%, hsla(189,100%,56%,1) 0px, transparent 50%),
+    radial-gradient(at 0% 50%, hsla(355,100%,93%,0.3) 0px, transparent 50%),
+    radial-gradient(at 80% 50%, hsla(340,100%,76%,0.3) 0px, transparent 50%),
+    radial-gradient(at 0% 100%, hsla(269,100%,77%,0.3) 0px, transparent 50%),
+    radial-gradient(at 0% 0%, hsla(343,100%,76%,0.3) 0px, transparent 50%);
+  animation: gradient-shift 15s ease infinite alternate;
+}
+
+@keyframes gradient-shift {
+  0% {
+    background-size: 100% 100%;
+    background-position: 0% 0%;
+  }
+  100% {
+    background-size: 200% 200%;
+    background-position: 100% 100%;
+  }
+}

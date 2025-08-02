@@ -174,7 +174,7 @@ export default {
 
         const apiToken = this.getCookie("token")
 
-        const response = await fetch(`https://hopeleaks-panel-backend.xsojeo.easypanel.host${endpoint}`, {
+        const response = await fetch(`http://localhost:3001${endpoint}`, {
           method: 'POST',
           headers: {
             'Content-Type': 'application/json',
