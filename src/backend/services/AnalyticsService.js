@@ -114,7 +114,7 @@ class AnalyticsService {
                 (SELECT COUNT(*) FROM ratings) as total_ratings,
                 (SELECT COUNT(*) FROM follows) as total_follows,
                 (SELECT COUNT(*) FROM bookmarks) as total_bookmarks,
-                (SELECT COUNT(*) FROM collections WHERE is_public = 1) as public_collections,
+                (SELECT COUNT(*) FROM collections WHERE is_private = 0 AND is_deleted = 0) as public_collections,
                 (SELECT AVG(rating) FROM ratings) as average_rating_given
         `;
         const [rows] = await dbConnection.query(query);
@@ -234,9 +234,9 @@ class AnalyticsService {
                 COUNT(s.id) as script_count,
                 SUM(s.downloads) as total_downloads,
                 AVG(s.rating_average) as avg_rating,
-                (SELECT COUNT(*) FROM follows WHERE following_id = u.discord_id) as follower_count
+                (SELECT COUNT(*) FROM follows WHERE following_id = u.discord_id COLLATE utf8mb4_unicode_ci) as follower_count
             FROM users u
-            LEFT JOIN scripts s ON u.discord_id = s.authorId AND s.isDeleted = 0 AND s.isApproved = 1
+            LEFT JOIN scripts s ON u.discord_id COLLATE utf8mb4_unicode_ci = s.authorId AND s.isDeleted = 0 AND s.isApproved = 1
             GROUP BY u.discord_id, u.username
             HAVING script_count > 0
             ORDER BY total_downloads DESC, script_count DESC
