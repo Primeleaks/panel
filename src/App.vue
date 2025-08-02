@@ -180,6 +180,27 @@ export default {
       });
     });
 
+    // Toast system variables and functions
+    const toasts = ref([]);
+
+    // Remove a toast by its ID
+    const removeToast = (id) => {
+      const index = toasts.value.findIndex(toast => toast.id === id);
+      if (index !== -1) {
+        toasts.value.splice(index, 1);
+      }
+    };
+
+    // Get appropriate icon for toast type
+    const getToastIcon = (type) => {
+      switch (type) {
+        case 'success': return 'fas fa-check-circle';
+        case 'error': return 'fas fa-exclamation-circle';
+        case 'warning': return 'fas fa-exclamation-triangle';
+        default: return 'fas fa-info-circle';
+      }
+    };
+
     // Provide global functions to child components
     provide('showToast', showToast);
     provide('setLoading', setLoading);
