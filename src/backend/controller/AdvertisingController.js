@@ -20,7 +20,7 @@ class AdvertisingController {
             }
 
             try {
-                const user = await this.userService.getUserByDiscordId(decoded.discordId);
+                const user = await this.userService.findUserByDiscordId(decoded.discord_id);
                 if (!user) {
                     return res.status(404).json({ message: 'User not found' });
                 }
