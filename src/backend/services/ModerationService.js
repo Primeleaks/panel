@@ -105,14 +105,14 @@ class ModerationService {
                    reporter.username as reporter_name,
                    CASE 
                        WHEN r.type = 'script' THEN s.title
-                       WHEN r.type = 'comment' THEN SUBSTRING(c.comment, 1, 50)
+                       WHEN r.type = 'comment' THEN SUBSTRING(c.content, 1, 50)
                        WHEN r.type = 'user' THEN u.username
                    END as target_name
             FROM reports r
-            JOIN users reporter ON r.reporter_id = reporter.discord_id
+            JOIN users reporter ON r.reporter_id = reporter.discord_id COLLATE utf8mb4_unicode_ci
             LEFT JOIN scripts s ON r.type = 'script' AND r.target_id = s.id
             LEFT JOIN comments c ON r.type = 'comment' AND r.target_id = c.id
-            LEFT JOIN users u ON r.type = 'user' AND r.target_id = u.discord_id
+            LEFT JOIN users u ON r.type = 'user' AND r.target_id = u.discord_id COLLATE utf8mb4_unicode_ci
             WHERE r.status = 'pending'
             ORDER BY r.created_at DESC
         `;
