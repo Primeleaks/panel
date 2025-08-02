@@ -209,14 +209,17 @@ export default {
         
         const response = await axios.get(endpoint, { params });
         
+        // Ensure that response.data.activities exists before using it
+        const responseActivities = response.data?.activities || [];
+
         if (resetPage) {
-          activities.value = response.data.activities;
+          activities.value = responseActivities;
         } else {
-          activities.value = [...activities.value, ...response.data.activities];
+          activities.value = [...activities.value, ...responseActivities];
         }
         
-        hasMoreActivities.value = response.data.activities.length === props.limit;
-        
+        hasMoreActivities.value = responseActivities.length === props.limit;
+
         // Check if user follows anyone (only for following filter)
         if (currentFilter.value === 'following' && activities.value.length === 0) {
           const followingCheck = await axios.get('/api/user/following/count');
