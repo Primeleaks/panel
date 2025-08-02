@@ -135,7 +135,7 @@ class DiscordController {
                     avatar: discordAvatar
                 });
 
-                let redirectUrl = `http://localhost:5173/?avatar=${avatarUrl}`; //frontend
+                let redirectUrl = `http://localhost:5174/?avatar=${avatarUrl}`; //frontend
                 res.redirect(redirectUrl);
 
             } catch (error) {
