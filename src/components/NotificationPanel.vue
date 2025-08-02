@@ -87,14 +87,15 @@ export default {
   emits: ['close', 'unread-count'],
   setup(props, { emit }) {
     const router = useRouter();
-    const notifications = ref([]);
+    const notifications = ref([]);  // Ensure it's initialized as an empty array
     const loading = ref(false);
     const hasMore = ref(true);
     const page = ref(1);
     const limit = 10;
 
     const unreadCount = computed(() => {
-      return notifications.value.filter(n => !n.is_read).length;
+      // Add a guard to prevent errors if notifications.value is undefined
+      return notifications.value?.filter(n => !n.is_read)?.length || 0;
     });
 
     const getCookie = (name) => {
@@ -118,14 +119,17 @@ export default {
           headers: getAuthHeaders()
         });
 
+        // Ensure that response.data.notifications exists before using it
+        const responseNotifications = response.data?.notifications || [];
+
         if (reset) {
-          notifications.value = response.data.notifications;
+          notifications.value = responseNotifications;
           page.value = 1;
         } else {
-          notifications.value.push(...response.data.notifications);
+          notifications.value.push(...responseNotifications);
         }
         
-        hasMore.value = response.data.notifications.length === limit;
+        hasMore.value = responseNotifications.length === limit;
         if (!reset) page.value++;
         
       } catch (error) {
