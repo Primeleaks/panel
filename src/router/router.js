@@ -7,9 +7,9 @@ import Main from '@/sites/main.vue'
 import axios from 'axios';
 
 const routes = [
-    { path: '/', component: Login, meta: { title: 'Hopeleaks | Login', bodyClass: 'public', requiresAuth: false} },
-    { path: '/checking', component: Checking, meta: { title: 'Hopeleaks | Login', bodyClass: 'public', requiresAuth: false} },
-    { path: '/main', component: Main, meta: { title: 'Hopeleaks', bodyClass: 'public', requiresAuth: true} }, // SPäter aus true
+    { path: '/', component: Login, meta: { title: 'Tester | Login', bodyClass: 'public', requiresAuth: false} },
+    { path: '/checking', component: Checking, meta: { title: 'Tester | Login', bodyClass: 'public', requiresAuth: false} },
+    { path: '/main', component: Main, meta: { title: 'Tester', bodyClass: 'public', requiresAuth: true} }, // SPäter aus true
 ];
 
 const router = createRouter({

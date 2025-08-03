@@ -89,11 +89,11 @@
             </div>
             <div class="form-group">
               <label for="adUrl">Ziel-URL:</label>
-              <input id="adUrl" v-model="adUrl" type="url" placeholder="https://hopeleaks.xyz" style="margin-right:10px;" />
+              <input id="adUrl" v-model="adUrl" type="url" placeholder="https://localhost" style="margin-right:10px;" />
             </div>
             <div class="form-group">
               <label for="adImage">Bild-URL:</label>
-              <input id="adImage" v-model="adImage" type="url" placeholder="https://hopeleaks.xyz/banner.png" style="margin-right:10px;" />
+              <input id="adImage" v-model="adImage" type="url" placeholder="https://localhost/banner.png" style="margin-right:10px;" />
             </div>
             <div class="form-group">
               <label for="adType">Typ:</label>
@@ -177,7 +177,7 @@ export default {
     async fetchScripts() {
       this.loading = true;
       try {
-        const response = await fetch('https://hopeleaks-panel-backend.xsojeo.easypanel.host/api/scripts');
+        const response = await fetch('http://localhost:3001/api/scripts');
         if (!response.ok) throw new Error('Fehler beim Laden der Scripts');
         this.scripts = await response.json();
       } catch (error) {
@@ -191,7 +191,7 @@ export default {
       const apiToken = this.getCookie("token");
 
       try {
-        const response = await axios.get(`https://hopeleaks-panel-backend.xsojeo.easypanel.host/api/blacklist`, {
+        const response = await axios.get(`http://localhost:3001/api/blacklist`, {
           headers: {
             'Content-Type': 'application/json',
             Authorization: `Bearer ${apiToken}`
@@ -214,7 +214,7 @@ export default {
 
       try {
         const response = await axios.post(
-            'https://hopeleaks-panel-backend.xsojeo.easypanel.host/api/blacklist/create',
+            'http://localhost:3001/api/blacklist/create',
             {
               discordId: this.blacklistUserId,
               name: 'Unbekannt',
@@ -251,7 +251,7 @@ export default {
 
       try {
 
-        await axios.delete(`https://hopeleaks-panel-backend.xsojeo.easypanel.host/api/blacklist/delete/${userId}`, {
+        await axios.delete(`http://localhost:3001/api/blacklist/delete/${userId}`, {
           headers: {
             'Content-Type': 'application/json',
             Authorization: `Bearer ${apiToken}`
@@ -270,7 +270,7 @@ export default {
       if (!confirm('Möchtest du dieses Script wirklich löschen?')) return;
       this.scripts = this.scripts.filter(script => script.id !== id);
       const apiToken = this.getCookie("token")
-      await axios.post(`https://hopeleaks-panel-backend.xsojeo.easypanel.host/api/scripts/delete/${id}`, {}, {
+      await axios.post(`http://localhost:3001/api/scripts/delete/${id}`, {}, {
         headers: {
           'Content-Type': 'application/json',
           Authorization: `Bearer ${apiToken}`

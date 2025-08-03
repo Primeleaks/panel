@@ -1,0 +1,396 @@
+/* Cyberpunk Script Cards - Complete Styling */
+
+/* Futuristic Image Container */
+.script-image-container {
+    position: relative;
+    width: 100%;
+    height: 200px;
+    overflow: hidden;
+    background: linear-gradient(135deg, 
+        rgba(0, 212, 255, 0.1) 0%, 
+        rgba(255, 0, 128, 0.1) 100%);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.script-image-container::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(45deg, 
+        transparent 30%, 
+        rgba(0, 212, 255, 0.1) 50%, 
+        transparent 70%);
+    opacity: 0;
+    transition: var(--transition);
+}
+
+.script-card:hover .script-image-container::before {
+    opacity: 1;
+    animation: scan-line 2s ease-in-out infinite;
+}
+
+@keyframes scan-line {
+    0% { transform: translateX(-100%) skewX(-15deg); }
+    100% { transform: translateX(100%) skewX(-15deg); }
+}
+
+.script-image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: var(--transition);
+    filter: brightness(0.8) contrast(1.2);
+}
+
+.script-card:hover .script-image {
+    transform: scale(1.1);
+    filter: brightness(1) contrast(1.3);
+}
+
+/* Cyberpunk Script Info */
+.script-info {
+    padding: var(--space-6);
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-4);
+    position: relative;
+}
+
+.script-info::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: var(--space-6);
+    right: var(--space-6);
+    height: 1px;
+    background: linear-gradient(90deg, 
+        transparent, 
+        var(--primary-color), 
+        transparent);
+    opacity: 0.3;
+}
+
+.script-info h3 {
+    margin: 0;
+    font-size: var(--font-xl);
+    font-weight: 700;
+    color: var(--text-primary);
+    line-height: 1.3;
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    text-shadow: 0 0 10px rgba(0, 212, 255, 0.3);
+    transition: var(--transition);
+}
+
+.script-card:hover .script-info h3 {
+    color: var(--primary-light);
+    text-shadow: 0 0 15px rgba(0, 212, 255, 0.5);
+}
+
+.script-info p {
+    margin: 0;
+    color: var(--text-secondary);
+    font-size: var(--font-sm);
+    line-height: 1.6;
+    display: -webkit-box;
+    -webkit-line-clamp: 3;
+    line-clamp: 3;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    flex: 1;
+    opacity: 0.9;
+}
+
+/* Futuristic Script Meta */
+.script-meta {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: var(--space-3);
+    padding-top: var(--space-4);
+    border-top: 1px solid var(--border-color);
+    flex-wrap: wrap;
+    position: relative;
+}
+
+.script-meta::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 1px;
+    background: linear-gradient(90deg, 
+        var(--primary-color), 
+        var(--accent-color), 
+        var(--primary-color));
+    opacity: 0;
+    transition: var(--transition);
+}
+
+.script-card:hover .script-meta::before {
+    opacity: 0.6;
+}
+
+.script-meta span {
+    font-size: var(--font-xs);
+    color: var(--text-muted);
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+.script-meta .button-group {
+    display: flex;
+    gap: var(--space-2);
+}
+
+/* Cyberpunk Action Buttons */
+.download-btn {
+    background: linear-gradient(135deg, 
+        rgba(0, 255, 136, 0.2) 0%, 
+        rgba(0, 204, 109, 0.3) 100%);
+    border: 1px solid var(--success-color);
+    border-radius: var(--radius);
+    padding: var(--space-2) var(--space-4);
+    color: var(--success-color);
+    font-size: var(--font-xs);
+    font-weight: 700;
+    cursor: pointer;
+    transition: var(--spring);
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    position: relative;
+    overflow: hidden;
+    backdrop-filter: blur(10px);
+}
+
+.download-btn::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, 
+        transparent, 
+        rgba(0, 255, 136, 0.3), 
+        transparent);
+    transition: left 0.5s ease;
+}
+
+.download-btn::after {
+    content: '\f019';
+    font-family: 'Font Awesome 6 Free';
+    font-weight: 900;
+    position: absolute;
+    top: 50%;
+    right: -20px;
+    transform: translateY(-50%);
+    opacity: 0;
+    transition: var(--transition);
+}
+
+.download-btn:hover {
+    transform: translateY(-2px) scale(1.05);
+    background: var(--success-color);
+    color: var(--main-bg);
+    border-color: var(--success-color);
+    box-shadow: 
+        var(--shadow),
+        0 0 20px rgba(0, 255, 136, 0.4);
+    padding-right: var(--space-8);
+}
+
+.download-btn:hover::before {
+    left: 100%;
+}
+
+.download-btn:hover::after {
+    right: var(--space-2);
+    opacity: 1;
+}
+
+.delete-btn {
+    background: linear-gradient(135deg, 
+        rgba(255, 51, 102, 0.2) 0%, 
+        rgba(204, 41, 82, 0.3) 100%);
+    border: 1px solid var(--danger-color);
+    border-radius: var(--radius);
+    padding: var(--space-2) var(--space-3);
+    color: var(--danger-color);
+    font-size: var(--font-xs);
+    font-weight: 700;
+    cursor: pointer;
+    transition: var(--spring);
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    position: relative;
+    overflow: hidden;
+    backdrop-filter: blur(10px);
+}
+
+.delete-btn::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, 
+        transparent, 
+        rgba(255, 51, 102, 0.3), 
+        transparent);
+    transition: left 0.5s ease;
+}
+
+.delete-btn:hover {
+    transform: translateY(-2px) scale(1.05);
+    background: var(--danger-color);
+    color: white;
+    border-color: var(--danger-color);
+    box-shadow: 
+        var(--shadow),
+        0 0 20px rgba(255, 51, 102, 0.4);
+}
+
+.delete-btn:hover::before {
+    left: 100%;
+}
+
+/* Cyberpunk Loading Animation */
+.loading {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 400px;
+    font-size: var(--font-lg);
+    color: var(--text-secondary);
+    position: relative;
+}
+
+.loading::before {
+    content: '';
+    width: 80px;
+    height: 80px;
+    border: 4px solid transparent;
+    border-top: 4px solid var(--primary-color);
+    border-right: 4px solid var(--accent-color);
+    border-radius: 50%;
+    margin-bottom: var(--space-6);
+    animation: cyber-spin 1.5s linear infinite;
+    position: relative;
+    background: radial-gradient(circle, 
+        rgba(0, 212, 255, 0.1) 0%, 
+        transparent 70%);
+}
+
+.loading::after {
+    content: 'LOADING SCRIPTS...';
+    position: absolute;
+    bottom: 30%;
+    font-size: var(--font-sm);
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    color: var(--primary-color);
+    animation: pulse-text 2s ease-in-out infinite;
+}
+
+@keyframes cyber-spin {
+    0% { 
+        transform: rotate(0deg);
+        filter: hue-rotate(0deg);
+    }
+    100% { 
+        transform: rotate(360deg);
+        filter: hue-rotate(360deg);
+    }
+}
+
+@keyframes pulse-text {
+    0%, 100% { 
+        opacity: 0.6;
+        text-shadow: 0 0 5px var(--primary-color);
+    }
+    50% { 
+        opacity: 1;
+        text-shadow: 0 0 15px var(--primary-color);
+    }
+}
+
+/* Skeleton Loading Cards */
+.skeleton {
+    background: linear-gradient(90deg, 
+        rgba(37, 37, 64, 0.8) 25%, 
+        rgba(45, 45, 80, 0.6) 50%, 
+        rgba(37, 37, 64, 0.8) 75%);
+    background-size: 200% 100%;
+    animation: skeleton-shimmer 2s infinite;
+    border-radius: var(--radius-xl);
+    position: relative;
+    overflow: hidden;
+    border: 1px solid var(--border-color);
+}
+
+.skeleton::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: linear-gradient(90deg, 
+        transparent 0%, 
+        rgba(0, 212, 255, 0.1) 50%, 
+        transparent 100%);
+    animation: skeleton-scan 3s infinite;
+}
+
+@keyframes skeleton-shimmer {
+    0% { background-position: 200% 0; }
+    100% { background-position: -200% 0; }
+}
+
+@keyframes skeleton-scan {
+    0% { transform: translateX(-100%); }
+    100% { transform: translateX(100%); }
+}
+
+/* Responsive Enhancements */
+@media (max-width: 768px) {
+    .scripts-grid {
+        grid-template-columns: 1fr;
+        gap: var(--space-4);
+    }
+    
+    .script-card {
+        margin: 0 var(--space-2);
+    }
+    
+    .script-info {
+        padding: var(--space-4);
+    }
+    
+    .content {
+        padding: var(--space-4);
+    }
+}
+
+@media (max-width: 480px) {
+    .script-meta {
+        flex-direction: column;
+        align-items: stretch;
+        gap: var(--space-2);
+    }
+    
+    .script-meta .button-group {
+        justify-content: center;
+    }
+}

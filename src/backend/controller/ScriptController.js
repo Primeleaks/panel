@@ -61,7 +61,7 @@ class ScriptController {
         try {
             await axios.post(process.env.DISCORD_LEAK_WEBHOOK_URL, {
                 embeds: [{
-                    title: `Hopeleaks Leak Announce`,
+                    title: `Tester Leak Announce`,
                     color: 16711680,
                     fields: [
                         { name: "Titel", value: scriptData.title, inline: false },
@@ -71,7 +71,7 @@ class ScriptController {
                     ],
                     image: { url: scriptData.image }
                 }],
-                footer: { text: "Hopeleaks Panel" },
+                footer: { text: "Tester Panel" },
                 timestamp: timestamp
             });
         } catch (error) {

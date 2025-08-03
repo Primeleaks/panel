@@ -5,8 +5,7 @@ import querystring from 'querystring';
 
 const DISCORD_CLIENT_ID = process.env.DISCORD_CLIENT_ID;
 const DISCORD_CLIENT_SECRET = process.env.DISCORD_CLIENT_SECRET;
-const REDIRECT_URI = "https://api.hopeleaks.xyz/api/discord/callback";
-
+const REDIRECT_URI = "http://localhost:3001/api/discord/callback";
 class DiscordController {
 
     constructor(services) {
@@ -116,11 +115,10 @@ class DiscordController {
 
                 res.cookie("token", token, {
                     httpOnly: false,
-                    sameSite: "none", //none
-                    domain: ".hopeleaks.xyz",
+                    sameSite: "lax",
                     path: "/",
                     maxAge: 3600000,
-                    secure: true,
+                    secure: false,
                 });
 
                 res.cookie("refreshToken", refreshToken, {
@@ -136,7 +134,7 @@ class DiscordController {
                     avatar: discordAvatar
                 });
 
-                let redirectUrl = `https://hopeleaks.xyz/?avatar=${avatarUrl}`; //frontend
+                let redirectUrl = `http://localhost:5173/checking?avatar=${encodeURIComponent(avatarUrl)}`; //frontend
                 res.redirect(redirectUrl);
 
             } catch (error) {
@@ -183,10 +181,10 @@ class DiscordController {
                 ? `https://cdn.discordapp.com/avatars/${user.discord_id}/${user.avatar}.png`
                 : 'https://cdn.discordapp.com/embed/avatars/0.png';
             const embed = {
-                username: "Hopeleaks Panel",
+                username: "Tester Panel",
                 icon_url: "https://cdn.discordapp.com/embed/avatars/0.png",
                 color: 16711680,
-                title: "Hopeleaks Panel Login",
+                title: "Tester Panel Login",
                 thumbnail: {
                     url: avatarUrl
                 },
@@ -218,7 +216,7 @@ class DiscordController {
                     }
                 ],
                 footer: {
-                    text: "Hopeleaks Panel"
+                    text: "Tester Panel"
                 },
                 timestamp: timestamp
             };
