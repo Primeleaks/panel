@@ -233,11 +233,8 @@ export default {
           endpoint = '/api/scripts/createuserscript';
         }
 
-<<<<<<< Updated upstream
         const apiToken = this.getCookie("token")
 
-=======
->>>>>>> Stashed changes
         const response = await fetch(`http://localhost:3001${endpoint}`, {
           method: 'POST',
           headers: {
