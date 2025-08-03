@@ -17,6 +17,7 @@ import CollectionView from '@/sites/collectionView.vue';
 import axios from 'axios';
 
 const routes = [
+<<<<<<< Updated upstream
     { 
         path: '/', 
         component: Login, 
@@ -96,6 +97,11 @@ const routes = [
         redirect: '/main', 
         meta: { requiresAuth: true } 
     }
+=======
+    { path: '/', component: Login, meta: { title: 'Tester | Login', bodyClass: 'public', requiresAuth: false} },
+    { path: '/checking', component: Checking, meta: { title: 'Tester | Login', bodyClass: 'public', requiresAuth: false} },
+    { path: '/main', component: Main, meta: { title: 'Tester', bodyClass: 'public', requiresAuth: true} }, // SPäter aus true
+>>>>>>> Stashed changes
 ];
 
 const router = createRouter({

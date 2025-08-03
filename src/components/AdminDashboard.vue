@@ -75,6 +75,7 @@
             </tbody>
           </table>
         </div>
+<<<<<<< Updated upstream
         
         <div v-if="activeTab === 'analytics'" class="analytics-section">
           <h3>Dashboard Analytics</h3>
@@ -87,6 +88,32 @@
                 <option value="30">Last 30 days</option>
                 <option value="90">Last 90 days</option>
                 <option value="365">Last year</option>
+=======
+
+        <div v-if="activeTab === 'ad'" class="blacklist-section">
+          <h3>Werbung</h3>
+          <form @submit.prevent>
+            <div class="form-group">
+              <label for="adLabel">Label:</label>
+              <input id="adLabel" v-model="adLabel" type="text" placeholder="Werbe-Label" style="margin-right:10px;" />
+            </div>
+            <div class="form-group">
+              <label for="adText">Text:</label>
+              <input id="adText" v-model="adText" type="text" placeholder="Werbetext" style="margin-right:10px;" />
+            </div>
+            <div class="form-group">
+              <label for="adUrl">Ziel-URL:</label>
+              <input id="adUrl" v-model="adUrl" type="url" placeholder="https://localhost" style="margin-right:10px;" />
+            </div>
+            <div class="form-group">
+              <label for="adImage">Bild-URL:</label>
+              <input id="adImage" v-model="adImage" type="url" placeholder="https://localhost/banner.png" style="margin-right:10px;" />
+            </div>
+            <div class="form-group">
+              <label for="adType">Typ:</label>
+              <select id="adType" v-model="adType" style="margin-right:10px;">
+                <option value="popup">Popup</option>
+>>>>>>> Stashed changes
               </select>
             </div>
           </div>

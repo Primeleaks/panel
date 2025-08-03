@@ -19,8 +19,15 @@ export default defineConfig(({ command, mode }) => {
         '@': fileURLToPath(new URL('./src', import.meta.url))
       },
     },
+<<<<<<< Updated upstream
     define: {
       'process.env.NODE_ENV': JSON.stringify(env.VITE_NODE_ENV || 'development')
     }
   }
+=======
+  },
+  server: {
+    historyApiFallback: true,
+  },
+>>>>>>> Stashed changes
 })

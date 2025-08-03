@@ -1,3 +1,14 @@
+<<<<<<< Updated upstream
+=======
+import '@/assets/main.css'
+import '@/assets/app.css'
+import '@/assets/login.css'
+import '@/assets/animations.css'
+import '@/assets/responsive.css'
+import '@/assets/components.css'
+import '@/assets/uiverse.css'
+
+>>>>>>> Stashed changes
 import { createApp } from 'vue'
 import { createStore } from 'vuex'
 import App from './App.vue'

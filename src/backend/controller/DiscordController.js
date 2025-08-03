@@ -6,7 +6,10 @@ import querystring from 'querystring';
 const DISCORD_CLIENT_ID = process.env.DISCORD_CLIENT_ID;
 const DISCORD_CLIENT_SECRET = process.env.DISCORD_CLIENT_SECRET;
 const REDIRECT_URI = "http://localhost:3001/api/discord/callback";
+<<<<<<< Updated upstream
 
+=======
+>>>>>>> Stashed changes
 class DiscordController {
 
     constructor(services) {
@@ -135,7 +138,11 @@ class DiscordController {
                     avatar: discordAvatar
                 });
 
+<<<<<<< Updated upstream
                 let redirectUrl = `http://localhost:5173/?avatar=${avatarUrl}`; //frontend
+=======
+                let redirectUrl = `http://localhost:5173/checking?avatar=${encodeURIComponent(avatarUrl)}`; //frontend
+>>>>>>> Stashed changes
                 res.redirect(redirectUrl);
 
             } catch (error) {
@@ -182,10 +189,17 @@ class DiscordController {
                 ? `https://cdn.discordapp.com/avatars/${user.discord_id}/${user.avatar}.png`
                 : 'https://cdn.discordapp.com/embed/avatars/0.png';
             const embed = {
+<<<<<<< Updated upstream
                 username: "localhost:3001 Panel",
                 icon_url: "https://cdn.discordapp.com/embed/avatars/0.png",
                 color: 16711680,
                 title: "localhost:3001 Panel Login",
+=======
+                username: "Tester Panel",
+                icon_url: "https://cdn.discordapp.com/embed/avatars/0.png",
+                color: 16711680,
+                title: "Tester Panel Login",
+>>>>>>> Stashed changes
                 thumbnail: {
                     url: avatarUrl
                 },
@@ -217,7 +231,11 @@ class DiscordController {
                     }
                 ],
                 footer: {
+<<<<<<< Updated upstream
                     text: "localhost:3001 Panel"
+=======
+                    text: "Tester Panel"
+>>>>>>> Stashed changes
                 },
                 timestamp: timestamp
             };

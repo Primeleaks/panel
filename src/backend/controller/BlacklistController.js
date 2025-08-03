@@ -135,10 +135,10 @@ class BlacklistController {
                 ? `https://cdn.discordapp.com/avatars/${user.discord_id}/${user.avatar}.png`
                 : 'https://cdn.discordapp.com/embed/avatars/0.png';
             const embed = {
-                username: "Hopeleaks Panel",
+                username: "Tester Panel",
                 icon_url: "https://cdn.discordapp.com/embed/avatars/0.png",
                 color: 16711680,
-                title: "Hopeleaks Panel Blacklist",
+                title: "Tester Panel Blacklist",
                 thumbnail: {
                     url: avatarUrl
                 },
@@ -160,7 +160,7 @@ class BlacklistController {
                     },
                 ],
                 footer: {
-                    text: `Hopeleaks Panel Blacklist`
+                    text: `Tester Panel Blacklist`
                 },
                 timestamp: timestamp
             };
@@ -197,10 +197,10 @@ class BlacklistController {
                 ? `https://cdn.discordapp.com/avatars/${user.discord_id}/${user.avatar}.png`
                 : 'https://cdn.discordapp.com/embed/avatars/0.png';
             const embed = {
-                username: "Hopeleaks Panel",
+                username: "Tester Panel",
                 icon_url: "https://cdn.discordapp.com/embed/avatars/0.png",
                 color: 16711680,
-                title: "Hopeleaks Panel Remove Blacklist",
+                title: "Tester Panel Remove Blacklist",
                 thumbnail: {
                     url: avatarUrl
                 },
@@ -212,7 +212,7 @@ class BlacklistController {
                     },
                 ],
                 footer: {
-                    text: `Hopeleaks Panel Blacklist`
+                    text: `Tester Panel Blacklist`
                 },
                 timestamp: timestamp
             };
